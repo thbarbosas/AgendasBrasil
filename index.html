@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agendas Brasil · Eventos de negócio em um só lugar | Supergasbras</title>
+<meta name="description" content="Quatro agendas de eventos de negócio em todo o Brasil: Síndico, Agro, Indústria e BioGL. Atualizadas duas vezes ao dia, com newsletter semanal.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --laranja:#D33100; --laranja-75:#DE6540; --laranja-50:#E99880;
+    --amarelo:#F0BE00; --amarelo-75:#F4CE40; --amarelo-50:#F7DE80;
+    --preto:#000; --branco:#fff;
+    --cinza-claro:#B2B2B2; --cinza-escuro:#575757;
+    --superficie:#FFFFFF; --superficie-painel:#F2F2F2;
+    --raio-painel:24px; --raio-selo:999px;
+    --sans:"Montserrat",Arial,sans-serif; --serif:"Source Serif 4",Georgia,serif;
+    --max:1200px; --gx:clamp(20px,5vw,64px);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);color:var(--preto);background:var(--superficie);line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gx)}
+  .caps{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+  .selo{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--laranja);color:var(--laranja);border-radius:var(--raio-selo);padding:6px 14px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+  .linha{display:block;width:56px;height:4px;background:var(--amarelo);border-radius:2px;margin:18px 0 0}
+  h2{font-weight:700;font-size:clamp(28px,3.6vw,42px);line-height:1.15;letter-spacing:-.01em}
+  h2 em{font-style:normal;color:var(--laranja)}
+  .intro{font-family:var(--serif);font-size:clamp(18px,1.8vw,22px);color:var(--cinza-escuro);max-width:640px;margin-top:16px}
+  .btn{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:15px;text-decoration:none;border-radius:var(--raio-selo);padding:14px 26px;transition:transform .2s, background .2s, color .2s;border:2px solid transparent;cursor:pointer;font-family:var(--sans)}
+  .btn-laranja{background:var(--laranja);color:var(--branco)}
+  .btn-laranja:hover{background:#B22900;transform:translateY(-2px)}
+  .btn-contorno{border-color:var(--branco);color:var(--branco);background:transparent}
+  .btn-contorno:hover{background:var(--branco);color:var(--preto)}
+  .seta{transition:transform .2s}
+  .btn:hover .seta{transform:translateX(4px)}
+
+  /* Topo */
+  header.topo{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.92);backdrop-filter:blur(8px);color:var(--branco)}
+  header.topo .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .marca{font-weight:800;font-size:15px;letter-spacing:.02em;text-decoration:none}
+  .marca span{color:var(--laranja)}
+  nav.atalhos{display:flex;gap:6px}
+  nav.atalhos a{font-size:13px;font-weight:600;text-decoration:none;padding:8px 12px;border-radius:var(--raio-selo);color:#ddd;transition:.2s}
+  nav.atalhos a:hover{background:var(--laranja);color:var(--branco)}
+  @media(max-width:820px){nav.atalhos{display:none}}
+
+  /* Hero */
+  .hero{background:var(--preto);color:var(--branco);position:relative;overflow:hidden;padding:clamp(72px,10vw,128px) 0 clamp(96px,12vw,150px)}
+  .hero svg.curva{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+  .hero svg.curva path{stroke-dasharray:2600;stroke-dashoffset:2600;animation:traco 2.6s ease-out .2s forwards}
+  @keyframes traco{to{stroke-dashoffset:0}}
+  .hero .wrap{position:relative}
+  .hero h1{font-weight:300;color:var(--laranja);font-size:clamp(40px,7vw,88px);line-height:1.02;letter-spacing:-.02em;margin-top:28px;max-width:900px}
+  .hero h1 strong{font-weight:800;color:var(--branco)}
+  .hero .intro{color:#cfcfcf;max-width:620px;margin-top:26px}
+  .hero .acoes{display:flex;flex-wrap:wrap;gap:14px;margin-top:38px}
+  .numeros{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:64px;max-width:720px}
+  .numeros div{border-top:1.5px solid var(--cinza-escuro);padding-top:14px}
+  .numeros b{display:block;font-size:clamp(28px,3.4vw,40px);font-weight:800;color:var(--amarelo);line-height:1}
+  .numeros span{font-size:13px;color:#bdbdbd}
+  .ticker{margin-top:56px;display:flex;align-items:center;gap:14px;font-size:14px;color:#cfcfcf;min-height:24px}
+  .ticker .ponto{width:10px;height:10px;border-radius:50%;background:var(--laranja);box-shadow:0 0 0 0 rgba(211,49,0,.7);animation:pulso 1.8s infinite}
+  @keyframes pulso{70%{box-shadow:0 0 0 12px rgba(211,49,0,0)}100%{box-shadow:0 0 0 0 rgba(211,49,0,0)}}
+  .ticker b{color:var(--branco)}
+  #frase{transition:opacity .4s}
+
+  /* Seções */
+  section{padding:clamp(72px,9vw,112px) 0}
+  .cab{margin-bottom:48px}
+
+  /* Cards */
+  .grade{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+  @media(max-width:1080px){.grade{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:600px){.grade{grid-template-columns:1fr}}
+  .card{position:relative;background:var(--superficie-painel);border-radius:var(--raio-painel);padding:28px 26px 26px;display:flex;flex-direction:column;text-decoration:none;color:var(--preto);transition:transform .3s, box-shadow .3s, background .3s;overflow:hidden;border:2px solid transparent;opacity:0;transform:translateY(24px)}
+  .card.visivel{opacity:1;transform:none;transition:opacity .6s, transform .6s, box-shadow .3s, border-color .3s}
+  .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.12)}
+  .card.destacado{border-color:var(--laranja);box-shadow:0 18px 40px rgba(211,49,0,.18)}
+  .card .icone{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;background:var(--branco);color:var(--laranja);margin-bottom:22px;transition:.3s}
+  .card:hover .icone{background:var(--laranja);color:var(--branco)}
+  .card .icone svg{width:30px;height:30px}
+  .card .num{position:absolute;top:22px;right:24px;font-size:13px;font-weight:700;color:var(--cinza-claro)}
+  .card h3{font-size:21px;font-weight:700;line-height:1.2}
+  .card h3 small{display:block;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--laranja);margin-bottom:6px}
+  .card p{font-size:15px;color:var(--cinza-escuro);margin-top:12px}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin:18px 0 24px}
+  .tags span{font-size:12px;font-weight:600;background:var(--branco);border-radius:var(--raio-selo);padding:5px 11px;color:var(--cinza-escuro)}
+  .card .ir{margin-top:auto;display:flex;align-items:center;justify-content:space-between;font-weight:700;font-size:15px;color:var(--laranja);border-top:1px solid #e0e0e0;padding-top:16px}
+  .card .ir i{font-style:normal;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--laranja);color:var(--branco);transition:transform .3s}
+  .card:hover .ir i{transform:rotate(-45deg)}
+
+  /* Espiar */
+  .espiar{background:var(--superficie-painel)}
+  .abas{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+  .abas button{font-family:var(--sans);font-weight:700;font-size:14px;border:1.5px solid var(--laranja);color:var(--laranja);background:var(--branco);padding:10px 18px;border-radius:var(--raio-selo);cursor:pointer;transition:.2s}
+  .abas button[aria-selected="true"],.abas button:hover{background:var(--laranja);color:var(--branco)}
+  .janela{background:var(--preto);border-radius:var(--raio-painel);overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.18)}
+  .janela .barra-nav{display:flex;align-items:center;gap:10px;padding:12px 18px;color:#bbb;font-size:13px}
+  .janela .barra-nav .bolas{display:flex;gap:6px}
+  .janela .barra-nav .bolas i{width:10px;height:10px;border-radius:50%;background:var(--cinza-escuro)}
+  .janela .barra-nav .bolas i:first-child{background:var(--laranja)}
+  .janela .barra-nav .bolas i:nth-child(2){background:var(--amarelo)}
+  .janela .url{flex:1;background:#1c1c1c;border-radius:var(--raio-selo);padding:6px 14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .janela .url-abrir{color:var(--amarelo);font-weight:700;text-decoration:none;white-space:nowrap}
+  .janela .tela{position:relative;height:min(72vh,680px);background:var(--branco)}
+  .janela iframe{width:100%;height:100%;border:0;display:block}
+  .janela .carregando{position:absolute;inset:0;display:grid;place-items:center;color:var(--cinza-escuro);font-size:14px;background:var(--branco);transition:opacity .4s}
+  .janela .carregando.fora{opacity:0;pointer-events:none}
+
+  /* Como funciona */
+  .passos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+  @media(max-width:860px){.passos{grid-template-columns:1fr}}
+  .passo{border:1.5px solid #e4e4e4;border-radius:var(--raio-painel);padding:30px 28px}
+  .passo b{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--amarelo);font-size:18px;font-weight:800;margin-bottom:18px}
+  .passo h3{font-size:19px;font-weight:700}
+  .passo p{color:var(--cinza-escuro);font-size:15px;margin-top:8px}
+
+  /* Barra (rodapé) */
+  footer{position:relative;color:var(--branco);margin-top:40px}
+  footer svg.topo-curva{display:block;width:100%;height:90px}
+  footer .fundo{background:var(--laranja);padding:20px 0 48px}
+  footer .linha-rodape{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-end;gap:28px}
+  footer .assinatura{font-family:var(--sans);font-weight:400;font-size:clamp(22px,3vw,32px)}
+  footer .assinatura strong{font-weight:800}
+  footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:14px}
+  footer .links a{text-decoration:none;font-weight:600}
+  footer .links a:hover{text-decoration:underline}
+  footer .legal{margin-top:30px;font-size:12px;opacity:.9}
+
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.card{opacity:1;transform:none}.hero svg.curva path{stroke-dashoffset:0}}
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="wrap">
+    <a class="marca" href="#inicio">Agendas <span>Brasil</span></a>
+    <nav class="atalhos" aria-label="Agendas">
+      <a href="#agendas">As agendas</a>
+      <a href="#espiar">Espiar ao vivo</a>
+      <a href="#como">Como funciona</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="inicio">
+  <svg class="curva" viewBox="0 0 1440 800" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M-40 640 C 320 520, 520 760, 860 560 S 1300 260, 1500 300" fill="none" stroke="#D33100" stroke-width="2"/>
+  </svg>
+  <div class="wrap">
+    <span class="selo">Eventos de negócio em todo o Brasil</span>
+    <h1>Os eventos do seu mercado, <strong>em um só lugar.</strong></h1>
+    <p class="intro">Você sabe onde estão as próximas feiras, congressos e encontros do seu setor? Reunimos quatro agendas, cada uma feita para um público, sempre atualizadas e prontas para você planejar o ano.</p>
+    <div class="acoes">
+      <a class="btn btn-laranja" href="#agendas">Escolher minha agenda <span class="seta">→</span></a>
+      <a class="btn btn-contorno" href="#espiar">Espiar ao vivo</a>
+    </div>
+    <div class="numeros">
+      <div><b>4</b><span>agendas segmentadas</span></div>
+      <div><b>2×</b><span>atualização por dia</span></div>
+      <div><b>Seg 8h</b><span>newsletter semanal</span></div>
+    </div>
+    <div class="ticker" aria-live="polite"><span class="ponto"></span><span id="frase"><b>Síndicos e administradoras</b> · condomínios, gestão e incorporação</span></div>
+  </div>
+</section>
+
+<section id="agendas">
+  <div class="wrap">
+    <div class="cab">
+      <span class="selo">As agendas</span>
+      <h2 style="margin-top:20px">Escolha o seu caminho. <em>Cada agenda fala com você.</em></h2>
+      <span class="linha"></span>
+      <p class="intro">Filtros por região, cidade e segmento, eventos sem data sinalizados e lembretes no seu e-mail.</p>
+    </div>
+
+    <div class="grade">
+      <a class="card" id="c-sindico" href="https://thbarbosas.github.io/AgendaDoSindicoBrasil/" target="_blank" rel="noopener">
+        <span class="num">01</span>
+        <div class="icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="10" height="18" rx="1"/><path d="M14 9h5a1 1 0 0 1 1 1v11H14"/><path d="M7 7h1M10 7h1M7 11h1M10 11h1M7 15h1M10 15h1M8 21v-3h2v3"/></svg></div>
+        <h3><small>Condomínios</small>Agenda do Síndico Brasil</h3>
+        <p>Eventos para síndicos, administradoras e incorporadoras. Gestão, legislação, inovação e tudo o que move o condomínio.</p>
+        <div class="tags"><span>Síndicos</span><span>Administradoras</span><span>Incorporadoras</span></div>
+        <span class="ir">Acessar agenda <i>→</i></span>
+      </a>
+
+      <a class="card" id="c-agro" href="https://thbarbosas.github.io/AgendaDoAgroBrasil/" target="_blank" rel="noopener">
+        <span class="num">02</span>
+        <div class="icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V10"/><path d="M12 13c0-4 3-7 8-7 0 4-3 7-8 7Z"/><path d="M12 10C12 6.5 9.5 4 5 4c0 3.5 2.5 6 7 6Z"/><path d="M5 21h14"/></svg></div>
+        <h3><small>Agronegócio</small>Agenda do Agro Brasil</h3>
+        <p>Feiras, dias de campo e congressos do agro em todas as regiões. Do grão à proteína animal, perto de quem produz.</p>
+        <div class="tags"><span>Produtores</span><span>Cooperativas</span><span>Agroindústria</span></div>
+        <span class="ir">Acessar agenda <i>→</i></span>
+      </a>
+
+      <a class="card" id="c-industria" href="https://thbarbosas.github.io/AgendaDaIndustriaBrasil/" target="_blank" rel="noopener">
+        <span class="num">03</span>
+        <div class="icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V11l5 3V11l5 3V11l5 3V5h3v16Z"/><path d="M7 18h2M12 18h2M17 18h1"/></svg></div>
+        <h3><small>Indústria</small>Agenda da Indústria Brasil</h3>
+        <p>Os grandes encontros da indústria brasileira: processos, eficiência energética, manufatura e novos negócios.</p>
+        <div class="tags"><span>Indústrias</span><span>Engenharia</span><span>Energia</span></div>
+        <span class="ir">Acessar agenda <i>→</i></span>
+      </a>
+
+      <a class="card" id="c-biogl" href="https://thbarbosas.github.io/AgendaDoBioGLBrasil/" target="_blank" rel="noopener">
+        <span class="num">04</span>
+        <div class="icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20c0-9 6-15 16-16-1 10-7 16-16 16Z"/><path d="M4 20 13 11"/></svg></div>
+        <h3><small>Sustentabilidade</small>Agenda do BioGL Brasil</h3>
+        <p>Eventos de todos os segmentos para empresas que usam gás e buscam certificados de sustentabilidade com o BioGL.</p>
+        <div class="tags"><span>ESG</span><span>Descarbonização</span><span>Todos os segmentos</span></div>
+        <span class="ir">Acessar agenda <i>→</i></span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<section class="espiar" id="espiar">
+  <div class="wrap">
+    <div class="cab">
+      <span class="selo">Ao vivo</span>
+      <h2 style="margin-top:20px">Espie antes de entrar. <em>Tudo funcionando agora.</em></h2>
+      <span class="linha"></span>
+    </div>
+    <div class="abas" role="tablist" aria-label="Pré-visualizar agenda">
+      <button role="tab" aria-selected="true" data-i="0">Síndico</button>
+      <button role="tab" aria-selected="false" data-i="1">Agro</button>
+      <button role="tab" aria-selected="false" data-i="2">Indústria</button>
+      <button role="tab" aria-selected="false" data-i="3">BioGL</button>
+    </div>
+    <div class="janela">
+      <div class="barra-nav">
+        <span class="bolas"><i></i><i></i><i></i></span>
+        <span class="url" id="url">thbarbosas.github.io/AgendaDoSindicoBrasil</span>
+        <a class="url-abrir" id="abrir" href="https://thbarbosas.github.io/AgendaDoSindicoBrasil/" target="_blank" rel="noopener">Abrir ↗</a>
+      </div>
+      <div class="tela">
+        <div class="carregando" id="carregando">Carregando a agenda…</div>
+        <iframe id="previa" title="Pré-visualização da agenda" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="como">
+  <div class="wrap">
+    <div class="cab">
+      <span class="selo">Como funciona</span>
+      <h2 style="margin-top:20px">Simples assim. <em>Três passos.</em></h2>
+      <span class="linha"></span>
+    </div>
+    <div class="passos">
+      <div class="passo"><b>1</b><h3>Escolha a sua agenda</h3><p>Síndico, Agro, Indústria ou BioGL. Você pode acompanhar quantas quiser.</p></div>
+      <div class="passo"><b>2</b><h3>Filtre o que importa</h3><p>Região, cidade e segmento. Eventos ainda sem data aparecem sinalizados, para você não perder nada.</p></div>
+      <div class="passo"><b>3</b><h3>Receba no seu e-mail</h3><p>Inscreva-se na newsletter da agenda e receba os destaques toda segunda, às 8h.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <svg class="topo-curva" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 90 L0 60 C 380 60, 620 0, 1000 10 S 1340 40, 1440 30 L1440 90 Z" fill="#D33100"/>
+  </svg>
+  <div class="fundo">
+    <div class="wrap">
+      <div class="linha-rodape">
+        <nav class="links" aria-label="Links das agendas">
+          <a href="https://thbarbosas.github.io/AgendaDoSindicoBrasil/" target="_blank" rel="noopener">Agenda do Síndico</a>
+          <a href="https://thbarbosas.github.io/AgendaDoAgroBrasil/" target="_blank" rel="noopener">Agenda do Agro</a>
+          <a href="https://thbarbosas.github.io/AgendaDaIndustriaBrasil/" target="_blank" rel="noopener">Agenda da Indústria</a>
+          <a href="https://thbarbosas.github.io/AgendaDoBioGLBrasil/" target="_blank" rel="noopener">Agenda do BioGL</a>
+        </nav>
+      </div>
+      <p class="legal">Informações dos eventos sujeitas a alteração pelos organizadores. Confirme datas e locais no site oficial de cada evento.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const agendas = {
+    sindico:  {nome:"Agenda do Síndico Brasil",  url:"https://thbarbosas.github.io/AgendaDoSindicoBrasil/",  txt:"Eventos de gestão condominial, legislação e inovação para quem cuida de condomínios."},
+    agro:     {nome:"Agenda do Agro Brasil",     url:"https://thbarbosas.github.io/AgendaDoAgroBrasil/",     txt:"Feiras, dias de campo e congressos do agronegócio em todas as regiões."},
+    industria:{nome:"Agenda da Indústria Brasil",url:"https://thbarbosas.github.io/AgendaDaIndustriaBrasil/",txt:"Os principais encontros da indústria, de eficiência energética a manufatura."},
+    biogl:    {nome:"Agenda do BioGL Brasil",    url:"https://thbarbosas.github.io/AgendaDoBioGLBrasil/",    txt:"Eventos de todos os segmentos para quem busca energia com certificado de sustentabilidade."}
+  };
+  const ordem = ["sindico","agro","industria","biogl"];
+
+  // Frases rotativas no hero
+  const frases = [
+    "<b>Síndicos e administradoras</b> · condomínios, gestão e incorporação",
+    "<b>Agronegócio</b> · feiras, dias de campo e cooperativas",
+    "<b>Indústria</b> · eficiência, processos e novos negócios",
+    "<b>BioGL</b> · sustentabilidade em todos os segmentos"
+  ];
+  let f = 0; const el = document.getElementById("frase");
+  setInterval(() => { el.style.opacity = 0; setTimeout(() => { f = (f+1) % frases.length; el.innerHTML = frases[f]; el.style.opacity = 1; }, 400); }, 3200);
+
+  // Entrada dos cards
+  const io = new IntersectionObserver(es => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("visivel"); io.unobserve(e.target); } }), {threshold:.15});
+  document.querySelectorAll(".card").forEach((c, i) => { c.style.transitionDelay = (i*90)+"ms"; io.observe(c); });
+
+  // Espiar ao vivo
+  const previa = document.getElementById("previa"), car = document.getElementById("carregando");
+  const urlEl = document.getElementById("url"), abrir = document.getElementById("abrir");
+  function mostrar(i){
+    const a = agendas[ordem[i]];
+    document.querySelectorAll(".abas button").forEach(x => x.setAttribute("aria-selected", x.dataset.i == i));
+    car.classList.remove("fora");
+    previa.src = a.url;
+    urlEl.textContent = a.url.replace("https://","").replace(/\/$/,"");
+    abrir.href = a.url;
+  }
+  previa.addEventListener("load", () => car.classList.add("fora"));
+  document.querySelectorAll(".abas button").forEach(b => b.addEventListener("click", () => mostrar(+b.dataset.i)));
+  const ioPrev = new IntersectionObserver(es => { if (es[0].isIntersecting) { mostrar(0); ioPrev.disconnect(); } }, {rootMargin:"200px"});
+  ioPrev.observe(document.getElementById("espiar"));
+</script>
+</body>
+</html>
